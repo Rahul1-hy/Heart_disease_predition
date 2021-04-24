@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Heart Disease </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <nav class="nav-item active">
+     <a class="nav-link" href="{{ url_for('index') }}">HOME</a>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+       <div class="container">
+
+         <h1>Heart Disease Prediction....</h1>
+
+
+         <form action={{ url_for("predict") }} method="post">
+
+              <div class="form-row">
+                <div class="col-md-3 mb-3">
+                  <label for="age">Age:</label>
+                  <input type="number" class="form-control" name="age" id="age" placeholder="e.g. 33" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="sex">Gender:</label>
+                  <select class="custom-select" id="sex" name="sex" required>
+                    <option selected disabled value="">Choose Gender..</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-3 mb-3">
+                  <label for="cp">Chest Pain:</label>
+                  <select class="custom-select" id="cp" name="cp" required>
+                    <option selected disabled value="">Choose C.P..</option>
+                    <option value="1">Typical Angina</option>
+                    <option value="2">Atypical Angina</option>
+                    <option value="3">Non-anginal pain</option>
+                    <option value="4">Asymptotic</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="bp">Blood Pressure:</label>
+                  <input type="number" class="form-control" id="bp" name="bp" placeholder="e.g. 145 mmHg" required>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="chol">Cholestrol:</label>
+                  <input type="text" class="form-control" name="chol" id="chol" placeholder="e.g. 233" required>
+                </div>
+
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-3 mb-3">
+                  <label for="fbs">Fast Blood Sugar:</label>
+                  <select class="custom-select" name="fbs" id="fbs" required>
+                    <option selected disabled value="">Choose F.B.S...</option>
+                    <option value="0">Less than 120mg/dl</option>
+                    <option value="1">Above of 120mg/dl</option>
+                  </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="restecg">Electrocardiographic:</label>
+                  <select class="custom-select" name="restecg" id="restecg" required>
+                    <option selected disabled value="">Choose restecg..</option>
+                    <option value="0">Normal</option>
+                    <option value="1">Having ST-T wave abnormality</option>
+                    <option value="2">Left ventricular hyperthrophy</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+
+                <div class="col-md-3 mb-3">
+                  <label for="thalach">Maximum heart rate:</label>
+                  <input type="number" name="thalach" class="form-control" id="thalach" placeholder="e.g. 150" required>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="exang">Induced Angina:</label>
+                  <select class="custom-select" name="exang" id="exang" required>
+                    <option selected disabled value="">Choose Angina..</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="oldpeak">Old Peak:</label>
+                  <input type="text" name="oldpeak" class="form-control" id="oldpeak" placeholder="e.g. 2.3" required>
+                </div>
+
+              </div>
+
+              <div class="form-row">
+
+                <div class="col-md-3 mb-3">
+                  <label for="slope">Slope:</label>
+                  <select class="custom-select" name="slope" id="slope" required>
+                    <option selected disabled value="">Choose Slope..</option>
+                    <option value="0">Upsloping</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Downsloping</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="ca">Major Vessels:</label>
+                  <select class="custom-select" name="ca" id="ca" required>
+                    <option selected disabled value="">Choose Vessels..</option>
+                    <option value="0">Zero</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="thal">Thal:</label>
+                  <select class="custom-select" name="thal" id="thal" required>
+                    <option selected disabled value="">Choose Thal..</option>
+                    <option value="0">Zero</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+       </div>
+    </div>
+
+  </body>
+</html>
